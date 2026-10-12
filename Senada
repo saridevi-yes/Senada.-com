@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENADA | Seni Nusantara dalam Batik</title>
+<style>
+:root {
+  --green:#8FAF83;
+  --dark:#38543B;
+  --brown:#79543A;
+  --cream:#F8F1E3;
+  --white:#FFFCF5;
+  --gold:#D6B77A;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--cream);color:#443B30;
+  font-family:Arial,sans-serif;line-height:1.7
+}
+header{
+  background:var(--white);padding:12px 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;position:sticky;top:0;z-index:10;
+  box-shadow:0 2px 10px #59462a18
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+  background:var(--dark);color:var(--cream);border-radius:50%;
+  width:48px;height:48px;display:grid;place-items:center;
+  font-size:25px;border:3px solid var(--gold)
+}
+.brand h2{margin:0;color:var(--dark);letter-spacing:3px}
+.brand small{display:block;font-size:11px;color:var(--brown)}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+button,.navbtn{
+  cursor:pointer;border:0;border-radius:10px;padding:10px 15px;
+  font-size:14px;font-weight:bold;transition:.2s
+}
+.navbtn{background:transparent;color:var(--dark)}
+.navbtn:hover,.navbtn.active{background:#E3EBDD}
+button:hover{transform:translateY(-2px);filter:brightness(.97)}
+.primary{background:var(--dark);color:white}
+.secondary{background:#E4EBD9;color:var(--dark)}
+main{min-height:70vh}
+.page{display:none;max-width:1120px;margin:auto;padding:42px 6% 70px}
+.page.active{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hero{
+  background:linear-gradient(130deg,#E3EBDD,#F8F1E3);
+  border-radius:28px;padding:48px 7%;position:relative;overflow:hidden
+}
+.hero:after{
+  content:"❋";position:absolute;right:5%;top:0;
+  font-size:180px;color:#79543A15;pointer-events:none
+}
+.eyebrow{color:var(--brown);font-weight:bold;letter-spacing:2px}
+h1,h2,h3{line-height:1.25;color:var(--dark)}
+h1{font-size:clamp(38px,7vw,68px);margin:10px 0}
+h2{font-size:clamp(25px,4vw,36px)}
+h3{margin-top:8px}
+.hero p{max-width:600px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.section-head{text-align:center;margin:10px 0 30px}
+.section-head p{max-width:650px;margin:10px auto;color:#716451}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{
+  background:var(--white);padding:22px;border-radius:18px;
+  border:1px solid #E7DDCB;box-shadow:0 5px 18px #59462a0a
+}
+.card .symbol{font-size:30px}
+.card p{font-size:14px}
+.muted{color:#766A59;font-size:13px}
+.pill{display:inline-block;background:#E3EBDD;color:var(--dark);
+  padding:4px 10px;border-radius:20px;font-size:12px}
+.callout{background:#E3EBDD;border-radius:18px;padding:22px;margin:25px 0}
+footer{text-align:center;background:var(--dark);color:#F8F1E3;padding:28px 15px}
+footer small{opacity:.85}
+button:focus-visible,.navbtn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+#regions{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:20px 0}
+.region{
+  background:#E3EBDD;color:var(--dark);padding:16px 10px;
+  border:2px solid transparent;border-radius:15px
+}
+.region.selected{border-color:var(--brown);background:#D5E2CC}
+.batik-card{display:flex;flex-direction:column;gap:8px}
+.batik-card button{margin-top:auto;align-self:flex-start}
+.detail{margin-top:25px;border:2px solid var(--gold)}
+.detail dl{display:grid;grid-template-columns:130px 1fr;gap:10px;font-size:14px}
+.detail dt{font-weight:bold;color:var(--brown)}
+.detail dd{margin:0}
+.quiz-option{
+  display:block;width:100%;text-align:left;margin:9px 0;
+  background:#F0E8D9;color:#443B30;border:2px solid transparent
+}
+.quiz-option:hover{border-color:var(--green)}
+.quiz-option:disabled{cursor:default;transform:none}
+.feedback{font-weight:bold;margin-top:12px}
+.progress{height:8px;background:#E5DCCB;border-radius:8px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--green);width:0;transition:.3s}
+.style-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.style-tabs button.selected{background:var(--dark);color:white}
+.map-note{font-size:13px;color:#766A59}
+@media(max-width:600px){
+ header{position:relative;padding:12px 4%}
+ nav{width:100%}
+ .navbtn{padding:8px;font-size:12px;flex:1}
+ .page{padding:25px 5% 45px}
+ .hero{padding:32px 7%}
+ .detail dl{grid-template-columns:1fr;gap:3px}
+ .detail dd{margin-bottom:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo" aria-label="Logo sementara SENADA">❋</div>
+    <div><h2>SENADA</h2><small>Seni Nusantara dalam Batik</small></div>
+  </div>
+  <nav aria-label="Navigasi utama">
+    <button class="navbtn active" data-page="home">Beranda</button>
+    <button class="navbtn" data-page="about">Arti Nama</button>
+    <button class="navbtn" data-page="batik">Ragam Batik</button>
+    <button class="navbtn" data-page="fashion">Fashion Style</button>
+    <button class="navbtn" data-page="games">Mini Games</button>
+  </nav>
+</header>
+
+<main>
+<!-- HALAMAN 1 -->
+<section class="page active" id="home">
+  <div class="hero">
+    <span class="eyebrow">JELAJAHI KEKAYAAN BUDAYA INDONESIA</span>
+    <h1>SENADA</h1>
+    <h2>Seni Nusantara dalam Batik</h2>
+    <p>
+      Selamat datang di SENADA! Mari mengenal keindahan motif batik,
+      menemukan cerita di balik setiap coraknya, dan menjaga warisan
+      budaya Indonesia agar terus hidup di generasi muda.
+    </p>
+    <p><i>Satu Nusantara, beragam motif, sejuta cerita.</i></p>
+    <div class="actions">
+      <button class="primary" onclick="go('batik')">Jelajahi Ragam Batik →</button>
+      <button class="secondary" onclick="go('about')">Kenali SENADA</button>
+    </div>
+  </div>
+  <div class="section-head">
+    <h2>Mulai Petualanganmu!</h2>
+    <p>Pilih halaman yang ingin kamu jelajahi.</p>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="symbol">🌿</div><h3>Arti Nama & Logo</h3>
+      <p>Kenali filosofi di balik nama SENADA dan konsep identitasnya.</p>
+      <button class="secondary" onclick="go('about')">Pelajari</button>
+    </article>
+    <article class="card"><div class="symbol">🗺️</div><h3>Ragam Batik</h3>
+      <p>Jelajahi enam wilayah Indonesia dan kenali berbagai motifnya.</p>
+      <button class="secondary" onclick="go('batik')">Jelajahi</button>
+    </article>
+    <article class="card"><div class="symbol">👕</div><h3>Batik Fashion Style</h3>
+      <p>Temukan inspirasi padu padan batik yang modern dan nyaman.</p>
+      <button class="secondary" onclick="go('fashion')">Lihat Gaya</button>
+    </article>
+    <article class="card"><div class="symbol">🎯</div><h3>Mini Games</h3>
+      <p>Uji pengetahuan batikmu lewat kuis bergaya permainan tradisional.</p>
+      <button class="secondary" onclick="go('games')">Main Sekarang</button>
+    </article>
+  </div>
+</section>
+
+<!-- HALAMAN 2 -->
+<section class="page" id="about">
+  <div class="section-head">
+    <span class="eyebrow">IDENTITAS KAMI</span>
+    <h2>Arti Nama dan Logo SENADA</h2>
+    <p>Nama yang sederhana dengan semangat untuk merawat budaya Nusantara.</p>
+  </div>
+  <div class="card">
+    <span class="pill">SENADA = Seni Nusantara dalam Batik</span>
+    <h2>Apa arti SENADA?</h2>
+    <p><b>SENADA</b> merupakan singkatan dari <b>Seni Nusantara dalam Batik</b>.
+      Website ini menjadi ruang belajar untuk mengenal keragaman motif batik
+      dan ragam hias daerah Indonesia, termasuk inspirasi budaya lokal yang
+      dikembangkan menjadi kain bermotif batik modern.</p>
+    <p>Nama “senada” juga mengingatkan kita pada harmoni: perbedaan daerah
+      dan motif dapat berpadu menjadi keindahan, seperti beragam budaya
+      Indonesia yang hidup berdampingan.</p>
+  </div>
+  <div class="grid" style="margin-top:20px">
+    <article class="card"><div class="symbol">❋</div><h3>Logo Bunga / Motif</h3>
+      <p>Logo sementara memakai ornamen bunga sederhana yang terinspirasi
+      dari ragam hias batik. Bentuk final dapat diganti dengan logo buatanmu.</p>
+    </article>
+    <article class="card"><div class="symbol">🌿</div><h3>Hijau Muda</h3>
+      <p>Melambangkan pertumbuhan, harapan, dan semangat generasi muda
+      untuk melestarikan budaya.</p>
+    </article>
+    <article class="card"><div class="symbol">🟤</div><h3>Cokelat</h3>
+      <p>Mengingatkan pada warna tanah, pewarna alami, dan kedekatan
+      dengan tradisi.</p>
+    </article>
+    <article class="card"><div class="symbol">🤍</div><h3>Krem</h3>
+      <p>Memberikan kesan hangat, tenang, dan menjadi latar agar motif
+      serta informasi mudah dibaca.</p>
+    </article>
+  </div>
+  <div class="callout"><b>Catatan:</b> Logo bunga pada bagian atas masih berupa
+    logo sementara. Kamu dapat menggantinya dengan logo resmi SENADA setelah
+    desain final selesai.</div>
+</section>
+
+<!-- HALAMAN 3 -->
+<section class="page" id="batik">
+  <div class="section-head">
+    <span class="eyebrow">PETA BUDAYA</span>
+    <h2>Jelajahi Ragam Batik Nusantara</h2>
+    <p>Pilih wilayah, kemudian pilih salah satu kain atau motif untuk membaca informasinya.</p>
+  </div>
+  <div class="callout">
+    <b>🗺️ Peta Jelajah Indonesia</b>
+    <p class="map-note">Pilih salah satu wilayah di bawah ini. Ini adalah peta
+      jelajah berbentuk tombol, bukan peta geografis berskala. Ilustrasi peta
+      Indonesia asli dapat ditambahkan pada pengembangan berikutnya.</p>
+    <div id="regions"></div>
+  </div>
+  <div id="batikChoices">
+    <div class="card"><h3>Selamat datang, penjelajah!</h3>
+      <p>Pilih wilayah untuk melihat tiga pilihan motif.</p></div>
+  </div>
+  <div id="batikDetail" aria-live="polite"></div>
+  <div class="callout">
+    <b>Yuk, kenali perbedaannya!</b>
+    <p>Tidak semua kain tradisional daerah dibuat dengan teknik batik malam.
+      Contohnya, Sasirangan dibuat dengan teknik jelujur dan ikat. Beberapa
+      motif di luar tradisi batik klasik merupakan pengembangan modern yang
+      terinspirasi dari ragam hias setempat.</p>
+  </div>
+</section>
+
+<!-- HALAMAN 4 -->
+<section class="page" id="fashion">
+  <div class="section-head">
+    <span class="eyebrow">BATIK UNTUK GENERASI MUDA</span>
+    <h2>Batik Fashion Style</h2>
+    <p>Batik bisa dipadukan dengan pakaian sehari-hari. Pilih inspirasi gaya yang kamu suka!</p>
+  </div>
+  <div class="style-tabs">
+    <button class="selected" onclick="showFashion('laki',this)">👔 Laki-laki</button>
+    <button onclick="showFashion('perempuan',this)">👗 Perempuan</button>
+  </div>
+  <div id="fashionContent"></div>
+  <div class="callout">
+    <b>Tips SENADA:</b> Pilih pakaian yang nyaman, sesuai kegiatan, dan
+    mencerminkan kepribadianmu. Semua gaya terbuka untuk siapa saja.
+  </div>
+</section>
+
+<!-- HALAMAN 5 -->
+<section class="page" id="games">
+  <div class="section-head">
+    <span class="eyebrow">BELAJAR SAMBIL BERMAIN</span>
+    <h2>Mini Games SENADA</h2>
+    <p>Tiga tantangan pengetahuan batik dengan inspirasi permainan tradisional.</p>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="symbol">🎯</div><h3>1. Tebak Motif</h3>
+      <p>Terinspirasi dari permainan tebak-tebakan.</p>
+      <button class="primary" onclick="startGame(0)">Mulai bermain</button>
+    </article>
+    <article class="card"><div class="symbol">🪙</div><h3>2. Adu Cepat Batik</h3>
+      <p>Terinspirasi dari semangat adu cepat dalam permainan kelompok.</p>
+      <button class="primary" onclick="startGame(1)">Mulai bermain</button>
+    </article>
+    <article class="card"><div class="symbol">🧩</div><h3>3. Rantai Budaya</h3>
+      <p>Terinspirasi dari permainan sambung kata dan ingatan.</p>
+      <button class="primary" onclick="startGame(2)">Mulai bermain</button>
+    </article>
+  </div>
+  <div id="gameArea" style="margin-top:25px"></div>
+</section>
+</main>
+
+<footer>
+  <h3 style="color:#F8F1E3;letter-spacing:3px">SENADA</h3>
+  <p>Seni Nusantara dalam Batik</p>
+  <small>Proyek edukasi budaya Indonesia · Karya teknologi terapan pelajar</small>
+</footer>
+
+<script>
+// NAVIGASI HALAMAN
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>
+    b.classList.toggle('active',b.dataset.page===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.navbtn').forEach(b=>
+  b.addEventListener('click',()=>go(b.dataset.page)));
+
+// DATA BATIK
+// Keterangan filosofi dapat berbeda menurut motif, sumber, dan tradisi setempat.
+const batiks = {
+"Sumatra":[
+["Batik Besurek","Kota Bengkulu, Bengkulu","Besurek berkaitan dengan kata surat atau tulisan. Motif kaligrafi dan unsur alam mencerminkan pertemuan budaya Melayu dan pengaruh Islam. Makna bergantung pada motif; tulisan suci harus dihormati.","Batik tulis atau cap; sebagian produk modern dibuat dengan teknik cetak."],
+["Batik Jambi Motif Angso Duo","Kota Jambi, Provinsi Jambi","Angso Duo berarti dua angsa. Motif ini dikaitkan dengan kebersamaan, kesetiaan, dan keharmonisan dalam ikon budaya Jambi.","Batik tulis atau cap dengan malam sebagai perintang warna."],
+["Batik Tanah Liek","Wilayah Minangkabau, terutama Padang dan sekitarnya, Sumatera Barat","Tanah liek berarti tanah liat. Warna tanah dan ragam hias alam mengingatkan hubungan manusia dengan alam serta kearifan lokal.","Pewarnaan tradisional menggunakan tanah liat; teknik dapat berbeda antarperajin."]
+],
+"Jawa":[
+["Batik Parang","Yogyakarta dan Surakarta","Parang dikaitkan dengan bentuk ombak atau bilah berulang yang diagonal. Susunannya sering melambangkan keteguhan, semangat, dan kesinambungan.","Batik tulis atau cap dengan teknik tutup-celup malam."],
+["Batik Mega Mendung","Cirebon, Jawa Barat","Mega mendung berarti awan mendung. Bentuk awan berlapis mengajarkan ketenangan, kesabaran, dan kemampuan mengendalikan diri.","Batik tulis atau cap dengan proses pewarnaan berlapis."],
+["Batik Kawung","Yogyakarta dan Surakarta","Kawung berupa lingkaran oval yang menyerupai irisan buah aren. Sering ditafsirkan sebagai lambang keseimbangan, pengendalian diri, dan kehidupan tertata.","Batik tulis atau cap memakai malam untuk menahan warna."]
+],
+"Kalimantan":[
+["Sasirangan Motif Bayam Raja","Kalimantan Selatan, khususnya Banjarmasin dan wilayah budaya Banjar","Sasirangan berasal dari kata Banjar sirang yang berkaitan dengan menjelujur. Bayam Raja adalah nama motif; tafsir maknanya dapat berbeda menurut sumber dan perajin.","Teknik jelujur, ikat, dan celup sebagai perintang warna; bukan teknik canting malam."],
+["Batik Benang Bintik","Palangka Raya dan wilayah budaya Dayak Ngaju, Kalimantan Tengah","Benang Bintik adalah nama kain bermotif khas Kalimantan Tengah. Motifnya dapat mengambil inspirasi dari simbol dan alam Dayak.","Batik kontemporer umumnya menggunakan teknik tulis, cap, atau cetak."],
+["Motif Batang Garing pada Batik","Palangka Raya dan wilayah budaya Dayak Ngaju, Kalimantan Tengah","Batang Garing dikenal sebagai simbol pohon kehidupan dalam budaya Dayak Ngaju. Motif ini dapat menyimbolkan hubungan kehidupan, alam, dan keseimbangan.","Ragam hias lokal yang diterapkan pada kain melalui teknik batik tulis, cap, atau cetak."]
+],
+"Sulawesi":[
+["Batik Toraja Motif Pa'tedong","Tana Toraja, Sulawesi Selatan","Pa'tedong merujuk pada kerbau dalam ragam hias Toraja. Kerbau memiliki kedudukan penting dalam adat dan upacara.","Motif terinspirasi ragam hias Toraja yang diterapkan pada batik modern."],
+["Batik Lontara","Makassar dan wilayah budaya Bugis-Makassar, Sulawesi Selatan","Lontara adalah aksara tradisional Bugis-Makassar. Motif aksara mengingatkan pentingnya literasi, sejarah, dan pelestarian bahasa daerah.","Motif aksara diterapkan pada kain dengan teknik tulis, cap, atau cetak."],
+["Batik Motif Pinisi","Bulukumba, Sulawesi Selatan","Pinisi adalah perahu tradisional yang terkait dengan pelaut Bugis-Makassar. Motif ini melambangkan keterampilan, keberanian, dan semangat menjelajah.","Batik kontemporer dengan teknik tulis, cap, atau cetak."]
+],
+"Bali + Nusa Tenggara":[
+["Batik Bali Motif Merak","Gianyar dan sentra kerajinan batik di Bali","Merak menjadi lambang keindahan dan keanggunan dalam ragam hias. Motif batik Bali juga dapat terinspirasi dari alam dan ornamen lokal.","Batik tulis, cap, atau kombinasi teknik; proses berbeda menurut perajin."],
+["Batik Sasambo","Mataram dan berbagai sentra kerajinan di Nusa Tenggara Barat","Sasambo merupakan singkatan dari Sasak, Samawa, dan Mbojo. Motifnya mengangkat identitas dan keragaman budaya NTB.","Batik tulis, cap, atau cetak; motif terinspirasi budaya lokal."],
+["Batik Motif Komodo","Labuan Bajo dan wilayah Flores, Nusa Tenggara Timur","Komodo adalah satwa khas Nusa Tenggara Timur. Motifnya mengingatkan pentingnya menjaga satwa endemik dan lingkungan.","Batik kontemporer dengan teknik tulis, cap, atau cetak."]
+],
+"Papua":[
+["Batik Port Numbay","Kota Jayapura, Papua","Port Numbay merupakan nama yang digunakan untuk Jayapura. Motifnya dapat mengangkat ikon pesisir, alam, dan budaya Papua.","Batik kontemporer dengan teknik tulis, cap, atau cetak."],
+["Batik Motif Asmat","Wilayah budaya Asmat, Papua bagian selatan","Motif terinspirasi dari seni ukir Asmat yang berhubungan dengan leluhur dan kehidupan komunitas. Makna setiap bentuk mengikuti tradisi setempat.","Ragam hias Asmat diadaptasi pada kain batik modern."],
+["Batik Motif Cenderawasih","Jayapura dan sentra kerajinan di Papua","Cenderawasih dikenal sebagai burung khas Papua. Motifnya melambangkan kekayaan alam dan mengajak masyarakat menjaga keanekaragaman hayati.","Batik kontemporer dengan teknik tulis, cap, atau cetak."]
+]
+};
+
+const regions=Object.keys(batiks);
+let currentRegion="Sumatra";
+
+const regionIcons={
+"Sumatra":"🌴","Jawa":"🏛️","Kalimantan":"🌳",
+"Sulawesi":"⛵","Bali + Nusa Tenggara":"🌺","Papua":"🦜"
+};
+const regionBox=document.getElementById('regions');
+regions.forEach(r=>{
+  const b=document.createElement('button');
+  b.className='region';b.innerHTML=regionIcons[r]+'<br>'+r;
+  b.onclick=()=>selectRegion(r,b);
+  regionBox.appendChild(b);
+});
+
+function selectRegion(region,button){
+  currentRegion=region;
+  document.querySelectorAll('.region').forEach(b=>b.classList.remove('selected'));
+  if(button)button.classList.add('selected');
+  document.getElementById('batikDetail').innerHTML='';
+  const target=document.getElementById('batikChoices');
+  target.innerHTML='<h2>Ragam Batik: '+region+'</h2>'+
+    '<p class="muted">Pilih kartu untuk membaca penjelasan lengkap.</p>';
+  const grid=document.createElement('div');grid.className='grid';
+  batiks[region].forEach((item,i)=>{
+    const card=document.createElement('article');card.className='card batik-card';
+    card.innerHTML='<span class="pill">Batik '+(i+1)+'</span>'+
+      '<div class="symbol">❋</div><h3>'+item[0]+'</h3>'+
+      '<p class="muted">📍 '+item[1]+'</p>'+
+      '<button class="primary">Pelajari motif →</button>';
+    card.querySelector('button').onclick=()=>showBatik(item);
+    grid.appendChild(card);
+  });
+  target.appendChild(grid);
+}
+function showBatik(item){
+  const box=document.getElementById('batikDetail');
+  box.innerHTML='<article class="card detail"><span class="pill">Ensiklopedia SENADA</span>'+
+    '<h2>'+item[0]+'</h2><dl>'+
+    '<dt>Nama batik</dt><dd>'+item[0]+'</dd>'+
+    '<dt>Arti nama</dt><dd>'+item[2].split('.')[0]+'.</dd>'+
+    '<dt>Asal daerah spesifik</dt><dd>'+item[1]+'</dd>'+
+    '<dt>Filosofi motif</dt><dd>'+item[2]+'</dd>'+
+    '<dt>Makna</dt><dd>'+item[2]+'</dd>'+
+    '<dt>Teknik pembuatan</dt><dd>'+item[3]+'</dd>'+
+    '</dl><button class="secondary" onclick="document.getElementById(\'batikChoices\').scrollIntoView({behavior:\'smooth\'})">← Pilih motif lain</button></article>';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+selectRegion("Sumatra",regionBox.firstElementChild);
+
+// FASHION STYLE
+const fashionData={
+laki:[
+["👔","Smart Casual","Kemeja batik bermotif kecil, celana chino krem, dan sepatu kasual. Cocok untuk acara sekolah atau keluarga."],
+["👕","Streetwear","Kaos polos dengan outer batik, celana nyaman, dan sneakers. Pilih motif sebagai aksen."],
+["🧥","Layering","Jaket atau overshirt batik dipadukan dengan kaos netral. Gunakan maksimal dua atau tiga warna utama."]
+],
+perempuan:[
+["👚","Casual Chic","Blus batik dengan celana kulot atau jeans polos. Padukan dengan sepatu nyaman."],
+["👗","Modern Elegan","Rok batik dengan atasan polos dan aksesori sederhana. Cocok untuk acara resmi."],
+["🧥","Outer Batik","Outer batik dengan kaos atau kemeja polos. Bisa digunakan untuk gaya santai maupun semi-formal."]
+]
+};
+function showFashion(type,button){
+  document.querySelectorAll('.style-tabs button').forEach(b=>b.classList.remove('selected'));
+  button.classList.add('selected');
+  const container=document.getElementById('fashionContent');
+  container.innerHTML='<div class="grid">'+fashionData[type].map(x=>
+    '<article class="card"><div class="symbol">'+x[0]+'</div><h3>'+x[1]+'</h3><p>'+x[2]+'</p></article>'
+  ).join('')+'</div>';
+}
+showFashion('laki',document.querySelector('.style-tabs button'));
+
+// MINI GAMES
+const quizzes=[
+[
+{q:"Batik Mega Mendung berasal dari daerah mana?",o:["Cirebon","Papua","Bali"],a:0,why:"Mega Mendung dikenal sebagai motif khas Cirebon, Jawa Barat."},
+{q:"Apa yang digambarkan motif Kawung?",o:["Irisan buah aren","Burung cenderawasih","Perahu pinisi"],a:0,why:"Bentuk oval Kawung menyerupai irisan buah aren."},
+{q:"Batik Besurek dari Bengkulu dikenal dengan motif apa?",o:["Kaligrafi","Awan berlapis","Kapal"],a:0,why:"Besurek dikenal dengan ragam hias kaligrafi dan unsur alam."}
+],
+[
+{q:"Teknik batik tulis menggunakan alat utama berupa ...",o:["Canting","Jarum rajut","Palu"],a:0,why:"Canting digunakan untuk mengalirkan malam ke kain."},
+{q:"Sasirangan berasal dari budaya masyarakat ...",o:["Banjar","Asmat","Toraja"],a:0,why:"Sasirangan merupakan kain tradisional masyarakat Banjar di Kalimantan Selatan."},
+{q:"Motif Pinisi terinspirasi dari ...",o:["Perahu tradisional","Bunga melati","Gunung"],a:0,why:"Pinisi adalah perahu tradisional yang berkaitan dengan pelaut Bugis-Makassar."}
+],
+[
+{q:"SENADA adalah singkatan dari ...",o:["Seni Nusantara dalam Batik","Sejarah Negara dan Adat","Sentra Nasional Daerah"],a:0,why:"SENADA berarti Seni Nusantara dalam Batik."},
+{q:"Motif Cenderawasih mengingatkan kita pada kekayaan alam ...",o:["Papua","Jawa Barat","Sumatera Barat"],a:0,why:"Cenderawasih merupakan burung yang identik dengan Papua."},
+{q:"Bahan perintang warna dalam batik tulis tradisional adalah ...",o:["Malam atau lilin batik","Pasir","Tepung"],a:0,why:"Malam menutup bagian kain agar tidak terkena warna saat pencelupan."}
+]
+];
+let gameIndex=0,questionIndex=0,score=0,answered=false;
+const gameNames=["Tebak Motif","Adu Cepat Batik","Rantai Budaya"];
+function startGame(index){
+  gameIndex=index;questionIndex=0;score=0;answered=false;
+  renderQuestion();document.getElementById('gameArea').scrollIntoView({behavior:'smooth'});
+}
+function renderQuestion(){
+  const area=document.getElementById('gameArea');
+  const list=quizzes[gameIndex];
+  if(questionIndex>=list.length){
+    area.innerHTML='<article class="card"><span class="eyebrow">PERMAINAN SELESAI</span>'+
+      '<h2>Hebat, Penjelajah Budaya! 🎉</h2><p>Skormu: <b>'+score+' dari '+list.length+'</b></p>'+
+      '<p>'+ (score===list.length?'Sempurna! Kamu mengenal batik dengan baik.':'Terus belajar, lalu coba lagi untuk meningkatkan skormu!')+'</p>'+
+      '<button class="primary" onclick="startGame('+gameIndex+')">Main Lagi</button> '+
+      '<button class="secondary" onclick="document.getElementById(\'games\').scrollIntoView({behavior:\'smooth\'})">Pilih Permainan</button></article>';
+    return;
+  }
+  answered=false;
+  const q=list[questionIndex];
+  area.innerHTML='<article class="card"><span class="pill">'+gameNames[gameIndex]+'</span>'+
+    '<h3>Pertanyaan '+(questionIndex+1)+' dari '+list.length+'</h3>'+
+    '<div class="progress"><span style="width:'+(questionIndex/list.length*100)+'%"></span></div>'+
+    '<h2>'+q.q+'</h2><div id="options"></div>'+
+    '<p id="feedback" class="feedback" aria-live="polite"></p>'+
+    '<button id="next" class="primary" style="display:none" onclick="nextQuestion()">Pertanyaan Berikutnya →</button></article>';
+  const options=document.getElementById('options');
+  q.o.forEach((option,i)=>{
+    const b=document.createElement('button');b.className='quiz-option';b.textContent=option;
+    b.onclick=()=>answerQuestion(i);options.appendChild(b);
+  });
+}
+function answerQuestion(choice){
+  if(answered)return;
+  answered=true;
+  const q=quizzes[gameIndex][questionIndex];
+  const buttons=document.querySelectorAll('.quiz-option');
+  buttons.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.style.borderColor='#64845B';});
+  const feedback=document.getElementById('feedback');
+  if(choice===q.a){score++;feedback.textContent='Benar! '+q.why;}
+  else feedback.textContent='Belum tepat. '+q.why;
+  document.getElementById('next').style.display='inline-block';
+}
+function nextQuestion(){questionIndex++;renderQuestion();}
+</script>
+</body>
+</html>
